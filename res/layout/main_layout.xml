@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+    <Button
+        android:id="@+id/connection_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="172dp"
+        android:text="CONNECT" />
+
+    <Button
+        android:id="@+id/forward_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Up" />
+
+    <Button
+        android:id="@+id/left_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/forward_button"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="48dp"
+        android:layout_toLeftOf="@+id/connection_button"
+        android:text="Left" />
+
+    <Button
+        android:id="@+id/right_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/left_button"
+        android:layout_alignBottom="@+id/left_button"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/connection_button"
+        android:text="Right" />
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/left_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Back" />
+
+    <EditText
+        android:id="@+id/temp_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/right_button"
+        android:layout_alignTop="@+id/connection_button"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+    
+    </RelativeLayout>
