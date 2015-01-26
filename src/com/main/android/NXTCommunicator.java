@@ -64,7 +64,6 @@ public class NXTCommunicator extends Thread{
         nxtBTsocket = nxtBTSocketTemporary;
         nxtInputStream = nxtBTsocket.getInputStream();
         nxtOutputStream = nxtBTsocket.getOutputStream();
-        //connected = true;
         
         if (uiHandler != null)
             sendState(CONNECTED);
@@ -138,7 +137,6 @@ public class NXTCommunicator extends Thread{
        if (nxtOutputStream == null)
            throw new IOException();
 
-       // send message length
        int messageLength = message.length;
        nxtOutputStream.write(messageLength);
        nxtOutputStream.write(messageLength >> 8);

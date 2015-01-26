@@ -1,6 +1,5 @@
 package com.main.android;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -8,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
@@ -20,14 +18,12 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 	private Main mActivity;
 	private Context mContext;
 	private ViewThread mThread;
-	private static final int REDRAW_SCHED = 100;
 	private float mBallXPosition, mBallYPosition;
 	private float mGreenBallXPosition, mGreenBallYPosition;
 	private int mCanvasWidth = 1;
 	private int mCanvasHeight = 1;
 	private float mCanvasCenterX = 0.0f;
 	private float mCanvasCenterY = 0.0f;
-	private String testText = "DEFAULT";
 	
 	public MainView(Context context, Main mainActivity) {
 		super(context);
@@ -88,7 +84,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 	        break;
 	    }
 	    
-        //return super.onTouchEvent(event);
 	    return true;
     }
 	
@@ -101,7 +96,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 		long mElapsedSinceDraw = 0;
 		private long mLastTime;
 		long mElapsedSinceNXTCommand = 0;
-		private boolean isConnected;
 		private Paint paint = new Paint();
 		
 		public ViewThread(SurfaceHolder surfaceHolder, Context context, Handler handler) {
@@ -134,26 +128,9 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 				mGreenBallXPosition = width/2 - 50;
 				mGreenBallYPosition = height - 100;
 				
-//				float mAHeight = mActionButton.getHeight();
-//				float mAWidth = mActionButton.getWidth();
-//				mActionButton = Bitmap.createScaledBitmap(mActionButton, width, (Math.round((width * (mAHeight / mAWidth)))), true);
-//				mActionDownButton = Bitmap.createScaledBitmap(mActionDownButton, width, (Math.round((width * (mAHeight / mAWidth)))), true);
-				
 				mBackgroundImage = Bitmap.createScaledBitmap(mBackgroundImage, width, height, true);
 				mRedBall = Bitmap.createScaledBitmap(mRedBall, 150, 150, true);
 				mGreenBall = Bitmap.createScaledBitmap(mGreenBall, 100, 100, true);
-
-//				int temp_ratio = mCanvasWidth / 64;
-//				GOAL_WIDTH = mCanvasWidth / temp_ratio;
-//
-//				ICON_MAX_SIZE = (GOAL_WIDTH / 8) * 6;
-//				ICON_MIN_SIZE = (GOAL_WIDTH / 4);
-//
-//				temp_ratio = mCanvasHeight / 64;
-//				GOAL_HEIGHT = mCanvasHeight / temp_ratio;
-//
-//				mTarget = Bitmap.createScaledBitmap(mTarget, GOAL_WIDTH, GOAL_HEIGHT, true);
-//				mTargetInactive = Bitmap.createScaledBitmap(mTargetInactive, GOAL_WIDTH, GOAL_HEIGHT, true);
 			}
 		}
 		
@@ -165,79 +142,8 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 				mCanvas.drawBitmap(mBackgroundImage, 0, 0, null);
 				mCanvas.drawBitmap(mRedBall, mBallXPosition, mBallYPosition, null);
 				mCanvas.drawBitmap(mGreenBall, mGreenBallXPosition,  mGreenBallYPosition, null);
-				//mCanvas.drawText(testText, 30.0f, 30.0f, paint);
-				//mCanvas.drawLine(mCanvasCenterX, 0.0f, mCanvasCenterX, mCanvasHeight, paint);
-				//mCanvas.drawLine(0.0f, mCanvasCenterY, mCanvasWidth, mCanvasCenterY, paint);
-				//draw pressed action button
-				//mCanvas.drawBitmap(mActionDownButton, 0, mCanvasHeight - mActionButton.getHeight(), null);
-				//draw icon in goal
-				// draw the goal
-				//mCanvas.drawBitmap(mTargetInactive, (mCanvasWidth - mTarget.getWidth()) / 2, ((mCanvasHeight - mActionButton.getHeight()) / 2)
-				//		- (mTarget.getHeight() / 2), null);
 			} else {
-				//mCanvas.drawBitmap(mRedBall, mBallXPosition, mBallYPosition, null);
 				mCanvas.drawText("Tap to connect", mCanvasCenterX - 170, mCanvasCenterY - 25, paint);
-//				// Draw the background image. Operations on the Canvas accumulate
-//				if (thread.isInGoal()) { // icon is in goal
-//					mInGoal = true;
-//					mGrowAdjust = calcGrowAdjust(mX, mY);
-//				} else {
-//					mGrowAdjust = ICON_MAX_SIZE;
-//					if (mInGoal) {// was in goal before
-//						mInGoal = false;
-//						vibrate();
-//					}
-//				}
-//
-//				// draw the background
-//				mCanvas.drawBitmap(mBackgroundImage, 0, 0, null);
-//
-//				// draw the action button
-//				mCanvas.drawBitmap(mActionPressed ? mActionDownButton : mActionButton, 0, mCanvasHeight - mActionButton.getHeight(), null);
-//				mActionPressed = false;
-//
-//				// draw the goal
-//				mCanvas.drawBitmap(mTarget, (mCanvasWidth - mTarget.getWidth()) / 2,
-//						((mCanvasHeight - mActionButton.getHeight()) / 2) - (mTarget.getHeight() / 2), null);
-//
-//				// update the icon location and draw (or blink) it
-//				if (mInGoal) {
-//
-//					mIconOrange.setBounds((int) mX - (mGrowAdjust / 2), (int) mY - ((mGrowAdjust / 2)), ((int) mX + (mGrowAdjust / 2)), (int) mY
-//							+ (mGrowAdjust / 2));
-//					mIconOrange.draw(mCanvas);
-//
-//				} else {
-//
-//					// boundary checking, don't want the move_icon going off-screen.
-//					if (mX + ICON_MAX_SIZE / 2 >= mCanvasWidth) {// set at outer edge
-//
-//						mX = mCanvasWidth - (ICON_MAX_SIZE / 2);
-//					} else if (mX - (ICON_MAX_SIZE / 2) < 0) {
-//						mX = ICON_MAX_SIZE / 2;
-//					}
-//
-//					// boundary checking, don't want the move_icon rolling
-//					// off-screen.
-//					if (mY + ICON_MAX_SIZE / 2 >= (mCanvasHeight - mActionButton.getHeight())) {// set at outer edge
-//
-//						mY = mCanvasHeight - mActionButton.getHeight() - ICON_MAX_SIZE / 2;
-//					} else if (mY - ICON_MAX_SIZE / 2 < 0) {
-//						mY = ICON_MAX_SIZE / 2;
-//					}
-//
-//					if (mLastTime > mNextPulse) {
-//
-//						mPulsingTiltIcon = mPulsingTiltIcon == mIconOrange ? mIconWhite : mIconOrange;
-//						 
-//						mNextPulse = mPulsingTiltIcon == mIconOrange ? mLastTime + calcNextPulse() : mLastTime + 90;
-//					}
-//
-//					mPulsingTiltIcon.setBounds((int) mX - (mGrowAdjust / 2), (int) mY - (mGrowAdjust / 2), ((int) mX + mGrowAdjust / 2),
-//							((int) mY + mGrowAdjust / 2));
-//					mPulsingTiltIcon.draw(mCanvas);
-//
-//				}
 			}
 		}
 		
@@ -361,7 +267,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 			returnedMotorASpeed = (int)(returnedMotorBSpeed * (percentageX/100));
 		}
 		
-		testText = ("MOTOR_A: " + returnedMotorBSpeed + " MOTOR_B: " + returnedMotorASpeed);
 		mActivity.move(returnedMotorBSpeed, returnedMotorASpeed);
 		
 		
