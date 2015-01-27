@@ -171,7 +171,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 			if (mLastTime > now)
 				return;
 
-			// double elapsed = (now - mLastTime) / 1000.0;
 			long elapsed = now - mLastTime;
 			
 			mElapsedSinceDraw += elapsed;
@@ -182,8 +181,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 		
 		@Override
 		public void run() {
-		    
-		//	Log.d(TAG, "--run--");
+
 			while (mThreadSwitcher) {
 				
 				try {
@@ -193,16 +191,9 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 				}
 
 				updateTime();
-				//updateMoveIndicator(mAccelX, mAccelY);
-				//doActionButtonFeedback();
-				// is it time to update the screen?
-				//if (mElapsedSinceDraw > REDRAW_SCHED) {
 
-					//is it time to update motor movement?
-					if (mElapsedSinceNXTCommand > 200) { // 200 - update time ... i gues NXTs dont like rush :(
-//						//calculate and send command to move motors							
-//						doMotorMovement(-mNumAcY, -mNumAcX);
-//					}
+				if (mElapsedSinceNXTCommand > 200) { // 200 - update time ... i gues NXTs dont like rush :(
+
 						if(mActivity.pConnected) {
 							setTheMotorsSpeed(mBallXPosition+75, mBallYPosition+75);
 							grab(mGreenBallXPosition);
@@ -268,23 +259,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback{
 		}
 		
 		mActivity.move(returnedMotorBSpeed, returnedMotorASpeed);
-		
-		
-//		float valueX = Math.abs(mCanvasCenterX - x);
-//		float valueY = Math.abs(mCanvasCenterY - y);
-//		
-//		float percentage = valueX/valueY * 100;
-//		float turn = percentage/100 * 100;  // 50 is the most comfortable speed to make device turn
-//		float forward = (100-percentage)/100 * 100; // i guess 100 is maximum speed of NXT
-//		
-//		
-//		if(valueX < mCanvasCenterX) {
-//			testText = ("MOTOR_A: " + (int)turn + " MOTOR_B: " + (int)forward);
-//			mActivity.move((int)turn, (int)forward);
-//		} else if (valueX >= mCanvasCenterX) {
-//			testText = ("MOTOR_A: " + (int)forward + " MOTOR_B: " + (int)turn);
-//			mActivity.move((int)forward, (int)turn);
-//		}
 	}
 	
 	public ViewThread getThread() {

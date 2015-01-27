@@ -14,7 +14,7 @@ import android.util.Log;
 
 public class NXTCommunicator extends Thread{
 	// Special oui just for LEGO
-	public static final String OUI_LEGO = "00:16:53";
+	//public static final String OUI_LEGO = "00:16:53";
 	private static final UUID SERIAL_PORT_SERVICE_CLASS_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 	
 	public static final int GET_FIRMWARE_VERSION = 70;

@@ -18,7 +18,7 @@ public class Main extends Activity
 	private NXTCommunicator myNXTCommunicator = null;
 	private Handler mainHandler;
 	private ProgressDialog connectingProgressDialog;
-	private String MAC_ADRESS;
+	private static final String MAC_ADRESS = "00:16:53:0C:64:41";
 	private MainView mView;
 	public boolean pConnected = false;
 
@@ -30,24 +30,7 @@ public class Main extends Activity
 		mView = new MainView(getApplicationContext(), this);
 		mView.setFocusable(true);
 		setContentView(mView);
-		
-		MAC_ADRESS = "00:16:53:0C:64:41";
-		
 	}
-	
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-	    switch(event.getAction()){
-	    case MotionEvent.ACTION_DOWN:
-	         break;
-	    case MotionEvent.ACTION_MOVE:
-	         break;
-	    case MotionEvent.ACTION_UP:
-	         break;
-	    }
-	    
-        return super.onTouchEvent(event);
-    }
 	
 	View.OnClickListener myConnectionHandler = new View.OnClickListener() {
 		
